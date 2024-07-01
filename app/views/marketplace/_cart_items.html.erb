@@ -1,0 +1,12 @@
+<% cart.line_items.each do |line_item| %>
+  <li class="flex space-x-6 py-6">
+    <img src="https://tailwindui.com/img/ecommerce-images/confirmation-page-06-product-01.jpg" alt="Model wearing men&#039;s charcoal basic tee in large." class="h-24 w-24 flex-none rounded-md bg-gray-100 object-cover object-center">
+    <div class="flex-auto space-y-1">
+      <h3 class="text-gray-900">
+        <a href="#"><%= line_item.product.name %></a>
+      </h3>
+      <p>Quantity: <%= line_item.quantity %></p>
+    </div>
+    <p class="flex-none font-medium text-gray-900">$<%= line_item.line_total %></p>
+  </li>
+<% end %>
