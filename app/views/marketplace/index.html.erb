@@ -2,21 +2,34 @@
   <!-- Left sidebar & main wrapper -->
   <div class="flex-1 xl:flex">
     <div class="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
-      <!-- Left column area -->
-      Left column area
+      <div>
+        <%= form_with url: root_path,
+          method: :get, 
+          data: { controller: "autosubmit", turbo_frame: "products", turbo_action: 'advance' }  do |form| %>
+          <%= form.label :name, "Search by name", class: "block text-sm font-medium leading-6 text-gray-900" %>
+          <div class="relative mt-2 flex items-center">
+            <%= form.text_field :name, 
+              placeholder: "Apple pie", 
+              value: params[:name],
+              class: "block w-full pl-2 rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6",
+              data: { action: "autosubmit#submit" } 
+            %>
+        </div>
+      <% end %>
+      </div>
     </div>
 
     <div class="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6">
       <!-- Main area -->
-       Products
+      Products
       <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
-        <%= render @products, { cart: @cart } %>
+        <%= turbo_frame_tag "products" do %>
+          <%= render @products, { cart: @cart } %>
+        <% end %>
       </ul>
     </div>
   </div>
 
   <div class="shrink-0 border-t border-gray-200 px-4 py-6 sm:px-6 lg:w-96 lg:border-l lg:border-t-0 lg:pr-8 xl:pr-6">
-    <!-- Right column area -->
-
     <%= render "cart", { cart: @cart } %>
   </div>

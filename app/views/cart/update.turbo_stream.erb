@@ -1,0 +1,7 @@
+<%= turbo_stream.update "cart_items" do %>
+  <%= render partial: "marketplace/cart_items", locals: { cart: current_user.cart } %>
+<% end %>
+
+<%= turbo_stream.update "cart_summary" do %>
+  <%= render partial: "marketplace/cart_summary", locals: { cart: current_user.cart } %>
+<% end %>

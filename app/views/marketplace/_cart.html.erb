@@ -3,30 +3,14 @@
   <p class="mt-2 text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">Cart</p>
 
   <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
-    <%= render partial: "cart_items", locals: { cart: cart } %>
-
-    <!-- More products... -->
+    <%= turbo_frame_tag "cart_items" do %>
+      <%= render partial: "cart_items", locals: { cart: cart } %>
+    <% end %>
   </ul>
 
-  <dl class="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
-    <div class="flex justify-between">
-      <dt>Subtotal</dt>
-      <dd class="text-gray-900">$72.00</dd>
-    </div>
-
-    <div class="flex justify-between">
-      <dt>Shipping</dt>
-      <dd class="text-gray-900">$8.00</dd>
-    </div>
-
-    <div class="flex justify-between">
-      <dt>Taxes</dt>
-      <dd class="text-gray-900">$6.40</dd>
-    </div>
-
-    <div class="flex items-center justify-between border-t border-gray-200 pt-6 text-gray-900">
-      <dt class="text-base">Total</dt>
-      <dd class="text-base">$86.40</dd>
-    </div>
+  <dl class="space-y-6  pt-6 text-sm font-medium text-gray-500">
+    <%= turbo_frame_tag "cart_summary" do %>
+      <%= render partial: "cart_summary", locals: { cart: cart } %>
+    <% end %>
   </dl>
 </div>
