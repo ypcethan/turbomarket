@@ -3,7 +3,11 @@ class CartController < ApplicationController
     line_item = current_user.cart.line_items.find_by(product_id: line_item_params[:product_id])
 
     if line_item
-      line_item.update(quantity: line_item_params[:quantity])
+      if line_item_params[:quantity].to_i.zero?
+        line_item.destroy
+      else
+        line_item.update(quantity: line_item_params[:quantity])
+      end
     else
       current_user.cart.line_items << LineItem.new(line_item_params)
     end

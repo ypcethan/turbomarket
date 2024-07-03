@@ -3,7 +3,7 @@
   <div class="flex-1 xl:flex">
     <div class="border-b border-gray-200 px-4 py-6 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:border-b-0 xl:border-r xl:pl-6">
       <div>
-        <%= form_with url: root_path,
+        <%= form_with url: products_path,
           method: :get, 
           data: { controller: "autosubmit", turbo_frame: "products", turbo_action: 'advance' }  do |form| %>
           <%= form.label :name, "Search by name", class: "block text-sm font-medium leading-6 text-gray-900" %>
@@ -23,9 +23,7 @@
       <!-- Main area -->
       Products
       <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
-        <%= turbo_frame_tag "products", src: products_path do %>
-          <%= render @products, { cart: @cart } %>
-        <% end %>
+        <%= turbo_frame_tag "products", src: products_path %>
       </ul>
     </div>
   </div>

@@ -1,3 +1,10 @@
 <%= turbo_frame_tag "products" do %>
-  <%= render @products, { cart: @cart } %>
+  <%= turbo_frame_tag "products_page_#{@pagy.page}" do %>
+    <%= render @products, { cart: @cart } %>
+    <% if @pagy.next %>
+      <%= turbo_frame_tag "products_page_#{@pagy.next}", src: products_path(page: @pagy.next, name: params[:name]), loading: :lazy do %>
+        <div>Loading...</div>
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>
