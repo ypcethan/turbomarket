@@ -23,7 +23,7 @@
       <!-- Main area -->
       Products
       <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
-        <%= turbo_frame_tag "products" do %>
+        <%= turbo_frame_tag "products", src: products_path do %>
           <%= render @products, { cart: @cart } %>
         <% end %>
       </ul>
